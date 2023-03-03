@@ -1,2 +1,6 @@
 # Template_IAR_STM8S
-Template for project IAR for STM8
+I build this template for all project STM8S I code on IAR for STM8 using STD Library
+This include 3 folder:
+- DriverLib: STD Library for STM8S
+- ProjectFile: Workspace, config file...
+- UserFile: main, other libraries...
