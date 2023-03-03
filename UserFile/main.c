@@ -1,43 +1,67 @@
+/**
+  ******************************************************************************
+  * @file    Project/main.c 
+  * @author  MCD Application Team
+  * @version V2.3.0
+  * @date    16-June-2017
+  * @brief   Main program body
+   ******************************************************************************
+  * @attention
+  *
+  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
+  *
+  * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
+  * You may not use this file except in compliance with the License.
+  * You may obtain a copy of the License at:
+  *
+  *        http://www.st.com/software_license_agreement_liberty_v2
+  *
+  * Unless required by applicable law or agreed to in writing, software 
+  * distributed under the License is distributed on an "AS IS" BASIS, 
+  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  * See the License for the specific language governing permissions and
+  * limitations under the License.
+  *
+  ******************************************************************************
+  */ 
+
+
 /* Includes ------------------------------------------------------------------*/
 #include "stm8s.h"
-#include "int_test_stm8s_clk.h"
 
-void delay(uint32_t time);
-uint32_t clk = 0;
+/* Private defines -----------------------------------------------------------*/
+/* Private function prototypes -----------------------------------------------*/
+/* Private functions ---------------------------------------------------------*/
 
 void main(void)
 {
-  clk_config_16MHz_hsi();
-  GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4), GPIO_MODE_OUT_PP_LOW_FAST);
-  clk = CLK_GetClockFreq();
-  
-  //24.000.000/512 = f
-  //T = 1/f
-  //100ms = 0.1 // 0.1/T = 4688; 1 chu ky de nhay vao ngat nen tru 1
-  TIM2_TimeBaseInit(TIM2_PRESCALER_512,46874);
-  TIM2_ClearFlag(TIM2_FLAG_UPDATE);
-  TIM2_ITConfig(TIM2_IT_UPDATE, ENABLE); //Cho phep ngat
-  
-  enableInterrupts(); //Ngat toan cuc
-  TIM2_Cmd(ENABLE); //Bat Timer2
+  /* Infinite loop */
   while (1)
   {
-    GPIO_WriteReverse(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_2|GPIO_PIN_3|GPIO_PIN_4));
-    delay(30000);
   }
   
 }
 
-void delay(uint32_t time)
-{
-  while(time--);
-}
-
 #ifdef USE_FULL_ASSERT
+
+/**
+  * @brief  Reports the name of the source file and the source line number
+  *   where the assert_param error has occurred.
+  * @param file: pointer to the source file name
+  * @param line: assert_param error line source number
+  * @retval : None
+  */
 void assert_failed(u8* file, u32 line)
-{
+{ 
+  /* User can add his own implementation to report the file name and line number,
+     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+
+  /* Infinite loop */
   while (1)
   {
   }
 }
 #endif
+
+
+/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
