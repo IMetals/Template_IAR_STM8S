@@ -41,8 +41,7 @@
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 /* Public functions ----------------------------------------------------------*/
-extern void Delay_ISR(void);
-    
+
 #ifdef _COSMIC_
 /**
   * @brief Dummy Interrupt routine
@@ -277,11 +276,9 @@ INTERRUPT_HANDLER(TIM1_CAP_COM_IRQHandler, 12)
   */
  INTERRUPT_HANDLER(TIM2_UPD_OVF_BRK_IRQHandler, 13)
  {
-    if(TIM2_GetITStatus(TIM2_IT_UPDATE)) //Kiem tra ngat gi
-    {
-      GPIO_WriteReverse(GPIOD, GPIO_PIN_0);
-      TIM2_ClearITPendingBit(TIM2_IT_UPDATE);
-    }
+  /* In order to detect unexpected events during development,
+     it is recommended to set a breakpoint on the following instruction.
+  */
  }
 
 /**
@@ -489,7 +486,9 @@ INTERRUPT_HANDLER(TIM6_UPD_OVF_TRG_IRQHandler, 23)
   */
  INTERRUPT_HANDLER(TIM4_UPD_OVF_IRQHandler, 23)
  {
-    Delay_ISR();
+  /* In order to detect unexpected events during development,
+     it is recommended to set a breakpoint on the following instruction.
+  */
  }
 #endif /* (STM8S903) || (STM8AF622x)*/
 
